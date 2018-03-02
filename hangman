@@ -1,0 +1,125 @@
+// UNCOMMENT THE FOLLOWING LINE (REMOVE THE TWO SLASHES AT THE BEGINNING) TO RUN AUTOMATIC TESTS
+#include "tests.h"
+#include <iostream>
+#include <string>
+#include "hangman.h"
+using namespace std;
+
+// find_letter (function to find letter in word)
+// input (guessed letter(s)
+// guess (all letters guessed)
+// answer (correct guess)
+// error (number of errors)
+
+	void find_letter(string guessf, string answerf)
+	{
+	string place;
+
+	for ( uint i = 0; i < answerf.length(); i++)
+		{
+		if (guessf.find(answerf[i]) == string::npos)
+		{
+		place += "_ ";
+		
+		}
+		else
+		{
+		place = place + answerf[i] + " ";}}
+
+	cout << "[ " << place << "]" << endl;}
+
+int main(){
+	cout << "HANGMAN"<< endl;
+	cout << "Choose word to guess: ";
+	string answer;
+	cin >> answer;
+	cout << "length word: "<< answer.length() <<endl;
+	
+	string letter;
+	for (uint i = 0; i < answer.length(); i++)
+	{
+	letter += "_ ";}
+	cout << "[ " << letter << "]" <<endl;
+	
+	int error = 0;
+	string guess;
+	int found = 0;
+    
+    
+    
+    int count = 0;
+
+    for (int i = 0; i < answer.length(); i++){
+    
+    for (int j = 0; j < i; j++){
+        if (answer[j] == answer[i]){
+         
+         count++;
+         }}}
+    
+
+	cout << "tries remaining: 6"<< endl;
+	
+	do{
+    
+    string input;
+    
+	cout << "letter(s) guessed: ";
+	cin >> input;
+	cout << input<<endl;
+	
+	if (answer.find(input) == string::npos)
+    	{error++;
+    	
+    	cout << "wrong guess" <<endl;
+    	cout << "tries remaining: "<< 6 - error <<endl;
+	} 
+	else 
+    	{guess += input;
+    	cout << "correct guess"<<endl;
+    	found++;
+    	if (found != answer.length()){cout << "tries remaining: "<< 6 - error <<endl;}
+    	
+	}
+	
+	
+	
+	
+	find_letter(guess, answer);
+	
+
+	
+	    
+	} while (error < 6 && found != answer.length() - count);
+    
+
+    //string result;
+    
+   // for ( uint i = 0; i < answer.length(); i++)
+    //{result += answer[i] + " ";}
+    
+    //cout<< " the word was: [ "<<result<<"]"<< endl;
+   	if ( found == answer.length()- count)
+	{
+    cout<< "You won!"<< endl;}
+    
+    if ( error >= 6)
+    {
+    
+    cout << "the correct word was: "<<answer<<endl;    
+    cout << "You lost!";
+    }
+    return 0;
+    
+    /*string restart;
+    string yes;
+    //string no;
+    cout << "restart?";
+    cin >> restart;
+    
+    if (restart == yes) {main() ;}*/
+   
+   
+   
+	
+}
